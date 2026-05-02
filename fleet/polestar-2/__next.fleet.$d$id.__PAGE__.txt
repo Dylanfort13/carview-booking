@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[53088,["/carview-booking/_next/static/chunks/01xlw8hd842-c.js","/carview-booking/_next/static/chunks/0d3shmwh5_nmn.js","/carview-booking/_next/static/chunks/04u.iicvgi49h.js","/carview-booking/_next/static/chunks/0vwl.~x7m~t.k.js"],"default"]
+3:I[97367,["/carview-booking/_next/static/chunks/01xlw8hd842-c.js","/carview-booking/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"id":"polestar-2"}],[["$","script","script-0",{"src":"/carview-booking/_next/static/chunks/04u.iicvgi49h.js","async":true}],["$","script","script-1",{"src":"/carview-booking/_next/static/chunks/0vwl.~x7m~t.k.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"1c8t48dkRVw3kCoMCNlGr"}
+5:null
