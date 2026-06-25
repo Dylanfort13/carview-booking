@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Phone, Mail } from "lucide-react";
-import { contactInfo } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
 export default function CTASection() {
+  const { contactInfo } = useCms()
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]" style={{

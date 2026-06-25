@@ -1,47 +1,26 @@
+"use client";
+
 import { Zap, Clock, DollarSign, Shield, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
-const features = [
-  {
-    icon: Clock,
-    title: "Lightning Fast Pickup",
-    description:
-      "When you arrive, we hand you the keys immediately. No rental counters, no waiting.",
-  },
-  {
-    icon: Sparkles,
-    title: "Impeccably Clean",
-    description:
-      "Rigorous cleaning and disinfecting after each rental. Every car feels like your own.",
-  },
-  {
-    icon: DollarSign,
-    title: "Cost-Efficient",
-    description:
-      "We pass operational savings to you. Earn rebates when you drive less. $500 deposit.",
-  },
-  {
-    icon: Zap,
-    title: "100% Electric",
-    description:
-      "No gas, no emissions. Pure, quiet, premium driving with instant torque and cutting-edge tech.",
-  },
-  {
-    icon: MapPin,
-    title: "YVR Airport Pickup",
-    description:
-      "A Transporter greets you at YVR and guides you to your car. No lines, no hassle.",
-  },
-  {
-    icon: Shield,
-    title: "All-Star Host",
-    description:
-      "399+ trips, 5.0 rating. Top-rated and most experienced host on Turo.",
-  },
+const fallbackFeatures = [
+  { icon: Clock, title: "Lightning Fast Pickup", description: "When you arrive, we hand you the keys immediately. No rental counters, no waiting." },
+  { icon: Sparkles, title: "Impeccably Clean", description: "Rigorous cleaning and disinfecting after each rental. Every car feels like your own." },
+  { icon: DollarSign, title: "Cost-Efficient", description: "We pass operational savings to you. Earn rebates when you drive less. $500 deposit." },
+  { icon: Zap, title: "100% Electric", description: "No gas, no emissions. Pure, quiet, premium driving with instant torque and cutting-edge tech." },
+  { icon: MapPin, title: "YVR Airport Pickup", description: "A Transporter greets you at YVR and guides you to your car. No lines, no hassle." },
+  { icon: Shield, title: "All-Star Host", description: "399+ trips, 5.0 rating. Top-rated and most experienced host on Turo." },
 ];
 
+const iconMap: Record<string, any> = { Zap, Clock, DollarSign, Shield, MapPin, Sparkles, BatteryCharging: Zap, Star: Shield, Plane: MapPin };
+
 export default function Features() {
+  const { features: cmsFeatures, kmRebates } = useCms()
+  const features = cmsFeatures.length > 0
+    ? cmsFeatures.map((f: any) => ({ ...f, icon: iconMap[f.icon] || Clock }))
+    : fallbackFeatures
   return (
     <section className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

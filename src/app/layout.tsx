@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { CmsProvider } from "@/lib/CmsProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} antialiased`}>
       <body className="min-h-screen flex flex-col font-[family-name:var(--font-montserrat)] bg-white text-foreground">
-        {children}
+        <CmsProvider>{children}</CmsProvider>
       </body>
     </html>
   );

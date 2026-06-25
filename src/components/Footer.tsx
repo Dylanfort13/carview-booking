@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
-import { contactInfo } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { Phone, Mail, MapPin, Globe } from "lucide-react";
 
 export default function Footer() {
+  const { contactInfo } = useCms()
   return (
     <footer className="bg-black text-white">
       <div className="divider-gold" />

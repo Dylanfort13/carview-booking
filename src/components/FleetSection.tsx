@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Star, ArrowRight } from "lucide-react";
-import { vehicles } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp, ScaleIn } from "@/components/Motion";
 
 export default function FleetSection() {
+  const { vehicles } = useCms()
   return (
     <section className="py-32 bg-surface" id="fleet">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

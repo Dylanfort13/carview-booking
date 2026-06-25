@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { contactInfo } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { Phone, Mail, MapPin, Globe, Send, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { FadeUp } from "@/components/Motion";
 
 export default function ContactPage() {
+  const { contactInfo } = useCms()
   const [submitted, setSubmitted] = useState(false);
 
   const inputClass =

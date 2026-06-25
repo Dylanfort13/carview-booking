@@ -2,16 +2,24 @@
 
 import { useRef, useEffect } from "react";
 import { MapPin, Train, Plane } from "lucide-react";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
-const highlights = [
+const fallbackHighlights = [
   { icon: Train, label: "5 min from Renfrew Skytrain" },
   { icon: Plane, label: "YVR Airport pickup available" },
   { icon: MapPin, label: "East Vancouver, BC" },
 ];
 
 export default function LocationSection() {
+  const { location } = useCms()
   const videoRef = useRef<HTMLVideoElement>(null);
+  const highlights = location?.highlights
+    ? location.highlights.map((label: string, i: number) => ({
+        icon: [Train, Plane, MapPin][i] || MapPin,
+        label,
+      }))
+    : fallbackHighlights
 
   useEffect(() => {
     if (videoRef.current) {
@@ -23,7 +31,7 @@ export default function LocationSection() {
     <section className="py-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
-          <div className="relative overflow-hidden rounded-t-2xl lg:rounded-t-none lg:rounded-l-2xl">
+          <div className="relative overflow-hidden rounded-t-2xl lg:rounded-t-none lg:rounded-l-2xl min-h-[280px]">
             <video
               ref={videoRef}
               autoPlay
@@ -58,7 +66,7 @@ export default function LocationSection() {
                 </p>
 
                 <div className="mt-8 space-y-4">
-                  {highlights.map((h) => (
+                  {highlights.map((h: any) => (
                     <div key={h.label} className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <h.icon size={16} className="text-accent" />

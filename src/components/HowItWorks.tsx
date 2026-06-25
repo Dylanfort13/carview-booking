@@ -1,34 +1,23 @@
+"use client";
+
 import { Calendar, Car, Key, ThumbsUp } from "lucide-react";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
-const steps = [
-  {
-    icon: Calendar,
-    number: "01",
-    title: "Pick Your Dates",
-    description: "Select when you need a car. Browse availability and choose the EV that fits your trip.",
-  },
-  {
-    icon: Car,
-    number: "02",
-    title: "Choose Your EV",
-    description: "Pick from our all-electric fleet — Polestar 2 or Tesla Model 3. All premium, all clean.",
-  },
-  {
-    icon: Key,
-    number: "03",
-    title: "Get the Key",
-    description: "A Transporter meets you on arrival. No rental counters, no lines. Just grab the key and go.",
-  },
-  {
-    icon: ThumbsUp,
-    number: "04",
-    title: "Drive & Return",
-    description: "Enjoy the ride. Return the car flexibly with at least 40% battery. Earn km rebates too.",
-  },
+const fallbackSteps = [
+  { icon: Calendar, number: "01", title: "Pick Your Dates", description: "Select when you need a car. Browse availability and choose the EV that fits your trip." },
+  { icon: Car, number: "02", title: "Choose Your EV", description: "Pick from our all-electric fleet — Polestar 2 or Tesla Model 3. All premium, all clean." },
+  { icon: Key, number: "03", title: "Get the Key", description: "A Transporter meets you on arrival. No rental counters, no lines. Just grab the key and go." },
+  { icon: ThumbsUp, number: "04", title: "Drive & Return", description: "Enjoy the ride. Return the car flexibly with at least 40% battery. Earn km rebates too." },
 ];
 
+const stepIconMap: Record<string, any> = { Calendar, Car, Key, Route: ThumbsUp };
+
 export default function HowItWorks() {
+  const { howItWorks } = useCms()
+  const steps = howItWorks.length > 0
+    ? howItWorks.map((s: any) => ({ ...s, icon: stepIconMap[s.icon] || Calendar }))
+    : fallbackSteps
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.02]" style={{

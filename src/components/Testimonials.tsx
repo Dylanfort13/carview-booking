@@ -1,8 +1,11 @@
+"use client";
+
 import { Star } from "lucide-react";
-import { testimonials } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
 export default function Testimonials() {
+  const { testimonials } = useCms()
   return (
     <section className="py-32 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

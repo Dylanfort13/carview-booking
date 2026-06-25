@@ -5,11 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { vehicles } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { Star, ArrowLeft, ArrowRight, Zap, Users, Gauge, CheckCircle } from "lucide-react";
 import { FadeUp } from "@/components/Motion";
 
 export default function CarDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { vehicles } = useCms()
   const { id } = use(params);
   const vehicle = vehicles.find((v) => v.id === id);
 

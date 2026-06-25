@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/lib/data";
+import { useCms } from "@/lib/CmsProvider";
 import { FadeUp } from "@/components/Motion";
 
 export default function FAQ() {
+  const { faqs } = useCms()
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
