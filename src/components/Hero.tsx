@@ -4,8 +4,17 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Calendar, ArrowRight, Zap, Star } from "lucide-react";
 import { FadeUp } from "@/components/Motion";
+import { useCms } from "@/lib/CmsProvider";
 
 export default function Hero() {
+  const { hero } = useCms()
+  const badgeText = hero?.badge || "100% Electric Fleet"
+  const headline = hero?.headline || "Drive the Future."
+  const subheadline = hero?.subheadline || "Rent Electric."
+  const description = hero?.description || "Premium EV rentals in Vancouver. Lightning fast pickup, impeccably clean cars, cost-efficient pricing."
+  const heroBgVideo = hero?.videoUrl || "https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-3-Performance-Performance-Mobile-LHD.mp4"
+  const happyTrips = hero?.happyTrips || "399+ happy trips"
+  const turoRating = hero?.turoRating || "5.0 Turo Rating"
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -28,7 +37,7 @@ export default function Hero() {
         poster="/images/vancouver-night.jpg"
       >
         <source
-          src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-3-Performance-Performance-Mobile-LHD.mp4"
+          src={heroBgVideo}
           type="video/mp4"
         />
       </video>
@@ -45,23 +54,22 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2.5 border border-accent/30 rounded-full px-5 py-2 mb-8 bg-accent/5 backdrop-blur-sm">
               <Zap size={13} className="text-accent" />
               <span className="text-accent text-[11px] font-bold tracking-[0.2em] uppercase">
-                100% Electric Fleet
+                {badgeText}
               </span>
             </div>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <h1 className="text-4xl sm:text-5xl lg:text-[4rem] font-bold text-white leading-[1.05] tracking-tight">
-              Drive the Future.
+              {headline}
               <br />
-              <span className="gold-gradient">Rent Electric.</span>
+              <span className="gold-gradient">{subheadline}</span>
             </h1>
           </FadeUp>
 
           <FadeUp delay={0.2}>
             <p className="mt-6 text-base sm:text-lg text-white/45 leading-relaxed max-w-lg">
-              Premium EV rentals in Vancouver. Lightning fast pickup,
-              impeccably clean cars, cost-efficient pricing.
+              {description}
             </p>
           </FadeUp>
 
@@ -142,14 +150,14 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-                <span>399+ happy trips</span>
+                <span>{happyTrips}</span>
               </div>
               <div className="w-px h-3.5 bg-white/10" />
               <div className="flex items-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star key={i} size={11} className="text-accent fill-accent" />
                 ))}
-                <span className="ml-1">5.0 Turo Rating</span>
+                <span className="ml-1">{turoRating}</span>
               </div>
             </div>
           </FadeUp>
